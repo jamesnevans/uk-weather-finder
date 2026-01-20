@@ -1,70 +1,183 @@
-# Getting Started with Create React App
+# Weather Finder
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React application that displays current weather information for cities worldwide using the OpenWeatherMap API.
 
-## Available Scripts
+## Live Demo
 
-In the project directory, you can run:
+🌐 **[View Live App](https://jamesnevans.github.io/uk-weather-finder)**
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Search for weather in cities from 30+ countries worldwide
+- Country selector for filtering city searches
+- City search suggestions with magnifying glass icon
+- Display current weather conditions with animated backgrounds
+- Show temperature (current, feels like, min, max) in Celsius
+- Display humidity percentage
+- Show wind speed in miles per hour
+- Display rain volume for the last hour in millimeters
+- Tabbed interface for organized data display (Temperature / Atmospheric Conditions)
+- Animated weather backgrounds that change based on conditions (rain, snow, clear, cloudy, etc.)
+- Error handling for incorrect city names
+- Interactive help popup with usage instructions
+- Responsive design
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Setup Instructions
 
-### `npm test`
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
 
-### `npm run build`
+1. Clone the repository:
+```bash
+git clone https://github.com/jamesnevans/uk-weather-finder.git
+cd uk-weather-finder
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Install dependencies:
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. The API key is already included in the code (`src/services/weatherService.js`):
+```javascript
+const API_KEY = '6ea5bc5a33da45b5366d311f1a52d0bd';
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Running the Application
 
-### `npm run eject`
+Start the development server:
+```bash
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The application will open in your browser at `http://localhost:3000`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Running Tests
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Run the test suite:
+```bash
+npm test
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Building for Production
 
-## Learn More
+Create a production build:
+```bash
+npm run build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Deploying to GitHub Pages
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Deploy the app to GitHub Pages:
+```bash
+npm run deploy
+```
 
-### Code Splitting
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Select a country from the dropdown menu (defaults to United Kingdom)
+2. Enter a city name in the search box
+3. (Optional) Click the magnifying glass 🔍 icon to see city suggestions
+4. Click "Get Weather" button or press Enter
+5. View the current weather information displayed below
+6. Switch between "Temperature" and "Atmospheric Conditions" tabs to see different data
+7. Click the help icon (?) for detailed usage instructions
 
-### Analyzing the Bundle Size
+## Supported Countries
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The application supports weather searches for cities in 30+ countries including:
+- United Kingdom
+- United States
+- Canada
+- Australia
+- France
+- Germany
+- Spain
+- Italy
+- Japan
+- And many more...
 
-### Making a Progressive Web App
+## Technologies Used
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- React 19
+- OpenWeatherMap API (Weather Data & Geocoding)
+- CSS3 with animations
+- Jest & React Testing Library
+- GitHub Pages (deployment)
 
-### Advanced Configuration
+## API Key
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**API Key:** `6ea5bc5a33da45b5366d311f1a52d0bd`
 
-### Deployment
+This key is included in the source code for evaluation purposes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Project Structure
+```
+src/
+├── components/
+│   ├── SearchBar.js          # Search input and country selector
+│   ├── SearchBar.css
+│   ├── WeatherDisplay.js     # Main weather display with tabs
+│   ├── WeatherDisplay.css
+│   ├── WeatherBackground.js  # Animated backgrounds
+│   ├── WeatherBackground.css
+│   ├── Tabs.js               # Tab component for organizing data
+│   ├── Tabs.css
+│   ├── CountrySelector.js    # Country dropdown selector
+│   ├── CountrySelector.css
+│   ├── ErrorMessage.js       # Error display component
+│   ├── ErrorMessage.css
+│   ├── Help.js               # Help popup component
+│   └── Help.css
+├── services/
+│   └── weatherService.js     # API integration and helper functions
+├── App.js                    # Main application component
+├── App.css
+└── index.js
+```
 
-### `npm run build` fails to minify
+## Features Detail
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Weather Backgrounds
+The background animates based on current weather conditions:
+- **Clear/Sunny**: Bright gradient with glow effect
+- **Cloudy**: Gray gradient with floating clouds
+- **Rainy**: Blue background with falling raindrops
+- **Snowy**: Winter gradient with falling snowflakes
+- **Stormy**: Dark background with lightning flashes
+- **Misty/Foggy**: Foggy overlay with moving mist
+
+### Tabbed Interface
+Weather data is organized into two tabs:
+- **Temperature**: Current, Feels Like, Min, and Max temperatures
+- **Atmospheric Conditions**: Humidity, Wind Speed, and Rain volume
+
+### Help System
+Interactive help popup explains:
+- How to select a country
+- How to search for cities
+- When to use the magnifying glass for suggestions
+- Tips for finding the right location
+
+## Development Timeline
+
+This project was developed as part of a front-end development exercise, demonstrating:
+- React component architecture
+- API integration (Weather & Geocoding)
+- State management
+- Error handling
+- Responsive design
+- Animated UI elements
+- User experience enhancements
+- Git version control with regular commits
+
+## Author
+
+James Evans
+
+## License
+
+This project was created for educational purposes as part of a technical interview exercise.

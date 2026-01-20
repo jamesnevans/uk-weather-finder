@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { searchCities } from '../services/weatherService';
 import CountrySelector from './CountrySelector';
+import Help from './Help';
 import './SearchBar.css';
 
 const SearchBar = ({ onSearch, isLoading }) => {
@@ -13,7 +14,6 @@ const SearchBar = ({ onSearch, isLoading }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (city.trim()) {
-      // When typing manually, use city name search
       onSearch({ type: 'city', city: city.trim(), country });
       setShowSuggestions(false);
       setSuggestions([]);
@@ -30,7 +30,6 @@ const SearchBar = ({ onSearch, isLoading }) => {
 
   const handleSelectSuggestion = (suggestion) => {
     setCity(suggestion.name);
-    // When selecting from suggestions, use coordinates
     onSearch({ 
       type: 'coordinates', 
       lat: suggestion.lat, 
@@ -74,7 +73,10 @@ const SearchBar = ({ onSearch, isLoading }) => {
 
   return (
     <div className="search-bar">
-      <h1>Weather Finder</h1>
+      <div className="header-container">
+        <h1>Weather Finder</h1>
+        <Help />
+      </div>
       
       <CountrySelector 
         selectedCountry={country}

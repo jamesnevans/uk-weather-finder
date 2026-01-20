@@ -3,16 +3,24 @@
   margin-bottom: 30px;
 }
 
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
 .search-bar h1 {
   color: #2c3e50;
-  margin-bottom: 20px;
+  margin: 0;
 }
 
 .search-bar form {
   display: flex;
   gap: 10px;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -131,6 +139,7 @@
   cursor: pointer;
   transition: background-color 0.3s;
   white-space: nowrap;
+  height: 48px;
 }
 
 .search-button:hover:not(:disabled) {

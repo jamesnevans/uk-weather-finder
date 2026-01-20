@@ -1,0 +1,33 @@
+.error-message {
+  background-color: #e74c3c;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  margin: 20px auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.error-message p {
+  margin: 0;
+}
+```
+
+## Quick Checklist - Your Files Should Be:
+```
+src/
+├── App.js
+├── App.css
+├── App.test.js
+├── index.js
+├── components/
+│   ├── SearchBar.js
+│   ├── SearchBar.css
+│   ├── SearchBar.test.js
+│   ├── WeatherDisplay.js
+│   ├── WeatherDisplay.css
+│   ├── ErrorMessage.js
+│   └── ErrorMessage.css    ← CREATE THIS
+└── services/
+    ├── weatherService.js
+    └── weatherService.test.js    ← MOVE THIS HERE

@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/uk-weather-finder/static/css/main.27638c64.css",
+    "main.js": "/uk-weather-finder/static/js/main.54da8c0d.js",
+    "static/js/453.5590fdac.chunk.js": "/uk-weather-finder/static/js/453.5590fdac.chunk.js",
+    "index.html": "/uk-weather-finder/index.html",
+    "main.27638c64.css.map": "/uk-weather-finder/static/css/main.27638c64.css.map",
+    "main.54da8c0d.js.map": "/uk-weather-finder/static/js/main.54da8c0d.js.map",
+    "453.5590fdac.chunk.js.map": "/uk-weather-finder/static/js/453.5590fdac.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.27638c64.css",
+    "static/js/main.54da8c0d.js"
+  ]
+}

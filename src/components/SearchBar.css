@@ -12,6 +12,7 @@
   display: flex;
   gap: 10px;
   justify-content: center;
+  align-items: flex-start;
   flex-wrap: wrap;
 }
 
@@ -20,8 +21,7 @@
   font-size: 16px;
   border: 2px solid #3498db;
   border-radius: 5px;
-  width: 300px;
-  max-width: 100%;
+  width: 100%;
 }
 
 .city-input:focus {
@@ -38,6 +38,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  white-space: nowrap;
 }
 
 .search-button:hover:not(:disabled) {

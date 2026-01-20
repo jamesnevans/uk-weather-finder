@@ -1,5 +1,6 @@
 const API_KEY = '6ea5bc5a33da45b5366d311f1a52d0bd';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
+const GEO_URL = 'https://api.openweathermap.org/geo/1.0/direct';
 
 export const getWeatherByCity = async (cityName, country = 'uk') => {
   try {
@@ -20,6 +21,25 @@ export const getWeatherByCity = async (cityName, country = 'uk') => {
     return data;
   } catch (error) {
     throw error;
+  }
+};
+
+// New function for city search suggestions
+export const searchCities = async (query, limit = 5) => {
+  if (!query || query.length < 2) {
+    return [];
+  }
+
+  try {
+    const response = await fetch(
+      `${GEO_URL}?q=${query},GB&limit=${limit}&appid=${API_KEY}`
+    );
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching city suggestions:', error);
+    return [];
   }
 };
 

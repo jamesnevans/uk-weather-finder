@@ -1,27 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { searchCities } from '../services/weatherService';
+import Autocomplete from './Autocomplete';
 import './SearchBar.css';
 
 const SearchBar = ({ onSearch, isLoading }) => {
   const [city, setCity] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      if (city.length >= 2) {
+        setIsSearching(true);
+        const results = await searchCities(city);
+        setSuggestions(results);
+        setIsSearching(false);
+      } else {
+        setSuggestions([]);
+      }
+    };
+
+    const timeoutId = setTimeout(fetchSuggestions, 300);
+    return () => clearTimeout(timeoutId);
+  }, [city]);
+
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
     if (city.trim()) {
       onSearch(city.trim());
+      setSuggestions([]);
     }
-  };
+  }, [city, onSearch]);
+
+  const handleSelectSuggestion = useCallback((suggestion) => {
+    const cityName = suggestion.name;
+    setCity(cityName);
+    setSuggestions([]);
+    onSearch(cityName);
+  }, [onSearch]);
+
+  const handleInputChange = useCallback((value) => {
+    setCity(value);
+  }, []);
 
   return (
     <div className="search-bar">
       <h1>UK Weather Finder</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter a UK city name (e.g., London, Manchester)"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          disabled={isLoading}
-          className="city-input"
+        <Autocomplete
+          suggestions={suggestions}
+          onSelect={handleSelectSuggestion}
+          inputValue={city}
+          onInputChange={handleInputChange}
+          isLoading={isLoading || isSearching}
         />
         <button 
           type="submit" 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { convertToMph } from '../services/weatherService';
+import Tabs, { TabPanel } from './Tabs';
 import './WeatherDisplay.css';
 
 const WeatherDisplay = ({ weatherData }) => {
@@ -26,44 +27,52 @@ const WeatherDisplay = ({ weatherData }) => {
         </div>
       </div>
 
-      <div className="weather-grid">
-        <div className="weather-item">
-          <span className="label">Current Temperature</span>
-          <span className="value">{weatherData.main.temp}°C</span>
-        </div>
+      <Tabs>
+        <TabPanel label="Temperature">
+          <div className="weather-grid">
+            <div className="weather-item">
+              <span className="label">Current Temperature</span>
+              <span className="value">{weatherData.main.temp}°C</span>
+            </div>
 
-        <div className="weather-item">
-          <span className="label">Feels Like</span>
-          <span className="value">{weatherData.main.feels_like}°C</span>
-        </div>
+            <div className="weather-item">
+              <span className="label">Feels Like</span>
+              <span className="value">{weatherData.main.feels_like}°C</span>
+            </div>
 
-        <div className="weather-item">
-          <span className="label">Humidity</span>
-          <span className="value">{weatherData.main.humidity}%</span>
-        </div>
+            <div className="weather-item">
+              <span className="label">Min Temperature</span>
+              <span className="value">{weatherData.main.temp_min}°C</span>
+            </div>
 
-        <div className="weather-item">
-          <span className="label">Min Temperature</span>
-          <span className="value">{weatherData.main.temp_min}°C</span>
-        </div>
+            <div className="weather-item">
+              <span className="label">Max Temperature</span>
+              <span className="value">{weatherData.main.temp_max}°C</span>
+            </div>
+          </div>
+        </TabPanel>
 
-        <div className="weather-item">
-          <span className="label">Max Temperature</span>
-          <span className="value">{weatherData.main.temp_max}°C</span>
-        </div>
+        <TabPanel label="Atmospheric Conditions">
+          <div className="weather-grid">
+            <div className="weather-item">
+              <span className="label">Humidity</span>
+              <span className="value">{weatherData.main.humidity}%</span>
+            </div>
 
-        <div className="weather-item">
-          <span className="label">Wind Speed</span>
-          <span className="value">{convertToMph(weatherData.wind.speed)} mph</span>
-        </div>
+            <div className="weather-item">
+              <span className="label">Wind Speed</span>
+              <span className="value">{convertToMph(weatherData.wind.speed)} mph</span>
+            </div>
 
-        <div className="weather-item">
-          <span className="label">Rain (Last Hour)</span>
-          <span className="value">
-            {weatherData.rain?.['1h'] || 0} mm
-          </span>
-        </div>
-      </div>
+            <div className="weather-item">
+              <span className="label">Rain (Last Hour)</span>
+              <span className="value">
+                {weatherData.rain?.['1h'] || 0} mm
+              </span>
+            </div>
+          </div>
+        </TabPanel>
+      </Tabs>
     </div>
   );
 };

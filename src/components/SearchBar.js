@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { searchCities } from '../services/weatherService';
+import CountrySelector from './CountrySelector';
 import './SearchBar.css';
 
 const SearchBar = ({ onSearch, isLoading }) => {
   const [city, setCity] = useState('');
+  const [country, setCountry] = useState('GB');
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [activeSuggestion, setActiveSuggestion] = useState(0);
@@ -11,7 +13,7 @@ const SearchBar = ({ onSearch, isLoading }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (city.trim()) {
-      onSearch(city.trim());
+      onSearch(city.trim(), country);
       setShowSuggestions(false);
       setSuggestions([]);
     }
@@ -19,7 +21,7 @@ const SearchBar = ({ onSearch, isLoading }) => {
 
   const handleSearchSuggestions = async () => {
     if (city.length >= 2) {
-      const results = await searchCities(city, 10);
+      const results = await searchCities(city, country, 10);
       setSuggestions(results);
       setShowSuggestions(true);
     }
@@ -27,7 +29,7 @@ const SearchBar = ({ onSearch, isLoading }) => {
 
   const handleSelectSuggestion = (suggestion) => {
     setCity(suggestion.name);
-    onSearch(suggestion.name);
+    onSearch(suggestion.name, country);
     setShowSuggestions(false);
     setSuggestions([]);
   };
@@ -65,12 +67,18 @@ const SearchBar = ({ onSearch, isLoading }) => {
 
   return (
     <div className="search-bar">
-      <h1>UK Weather Finder</h1>
+      <h1>Weather Finder</h1>
+      
+      <CountrySelector 
+        selectedCountry={country}
+        onCountryChange={setCountry}
+      />
+
       <form onSubmit={handleSubmit}>
         <div className="search-input-container">
           <input
             type="text"
-            placeholder="Enter a UK city name (e.g., London, Manchester)"
+            placeholder={`Enter a city name (e.g., ${country === 'GB' ? 'London' : country === 'US' ? 'New York' : 'Paris'})`}
             value={city}
             onChange={(e) => setCity(e.target.value)}
             onKeyDown={handleKeyDown}

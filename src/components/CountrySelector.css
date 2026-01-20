@@ -1,0 +1,32 @@
+.country-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.country-selector label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.country-select {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  min-width: 200px;
+}
+
+.country-select:focus {
+  outline: none;
+  border-color: #2980b9;
+}
+
+.country-select:hover {
+  border-color: #2980b9;
+}

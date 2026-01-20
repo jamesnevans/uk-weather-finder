@@ -10,13 +10,13 @@ function App() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSearch = async (city) => {
+  const handleSearch = async (city, country = 'GB') => {
     setIsLoading(true);
     setError('');
     setWeatherData(null);
 
     try {
-      const data = await getWeatherByCity(city);
+      const data = await getWeatherByCity(city, country);
       setWeatherData(data);
     } catch (err) {
       setError(err.message);

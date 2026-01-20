@@ -13,7 +13,8 @@ const SearchBar = ({ onSearch, isLoading }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (city.trim()) {
-      onSearch(city.trim(), country);
+      // When typing manually, use city name search
+      onSearch({ type: 'city', city: city.trim(), country });
       setShowSuggestions(false);
       setSuggestions([]);
     }
@@ -29,7 +30,13 @@ const SearchBar = ({ onSearch, isLoading }) => {
 
   const handleSelectSuggestion = (suggestion) => {
     setCity(suggestion.name);
-    onSearch(suggestion.name, country);
+    // When selecting from suggestions, use coordinates
+    onSearch({ 
+      type: 'coordinates', 
+      lat: suggestion.lat, 
+      lon: suggestion.lon,
+      name: suggestion.name 
+    });
     setShowSuggestions(false);
     setSuggestions([]);
   };

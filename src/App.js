@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SearchBar from './components/SearchBar';
 import WeatherDisplay from './components/WeatherDisplay';
 import ErrorMessage from './components/ErrorMessage';
-import { getWeatherByCity } from './services/weatherService';
+import { getWeatherByCity, getWeatherByCoordinates } from './services/weatherService';
 import './App.css';
 
 function App() {
@@ -10,13 +10,22 @@ function App() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSearch = async (city, country = 'GB') => {
+  const handleSearch = async (searchData) => {
     setIsLoading(true);
     setError('');
     setWeatherData(null);
 
     try {
-      const data = await getWeatherByCity(city, country);
+      let data;
+      
+      if (searchData.type === 'coordinates') {
+        // Use coordinates for suggestion selections
+        data = await getWeatherByCoordinates(searchData.lat, searchData.lon);
+      } else {
+        // Use city name for manual typing
+        data = await getWeatherByCity(searchData.city, searchData.country);
+      }
+      
       setWeatherData(data);
     } catch (err) {
       setError(err.message);

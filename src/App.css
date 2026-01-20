@@ -11,6 +11,12 @@
   z-index: 1;
 }
 
+.container.dark-background .search-bar h1,
+.container.dark-background .country-selector label {
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
 * {
   box-sizing: border-box;
 }

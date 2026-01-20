@@ -136,3 +136,18 @@
 .weather-background.default {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
+
+/* Light text for dark backgrounds */
+.weather-background.rainy ~ .container .search-bar h1,
+.weather-background.rainy ~ .container .country-selector label,
+.weather-background.stormy ~ .container .search-bar h1,
+.weather-background.stormy ~ .container .country-selector label,
+.weather-background.cloudy ~ .container .search-bar h1,
+.weather-background.cloudy ~ .container .country-selector label,
+.weather-background.misty ~ .container .search-bar h1,
+.weather-background.misty ~ .container .country-selector label,
+.weather-background.snowy ~ .container .search-bar h1,
+.weather-background.snowy ~ .container .country-selector label {
+  color: #ffffff !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}

@@ -4,14 +4,17 @@ import Tabs, { TabPanel } from './Tabs';
 import WeatherBackground from './WeatherBackground';
 import './WeatherDisplay.css';
 
-const WeatherDisplay = ({ weatherData }) => {
+const WeatherDisplay = ({ weatherData, onBackgroundTypeChange }) => {
   if (!weatherData) return null;
 
   const iconUrl = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
 
   return (
     <>
-      <WeatherBackground weatherCondition={weatherData.weather[0].main} />
+      <WeatherBackground 
+        weatherCondition={weatherData.weather[0].main}
+        onBackgroundTypeChange={onBackgroundTypeChange}
+      />
       
       <div className="weather-display">
         <div className="weather-header">

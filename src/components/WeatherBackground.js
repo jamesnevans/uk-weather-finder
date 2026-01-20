@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './WeatherBackground.css';
 
-const WeatherBackground = ({ weatherCondition }) => {
-  // Map weather conditions to background types
+const WeatherBackground = ({ weatherCondition, onBackgroundTypeChange }) => {
   const getBackgroundType = () => {
     const condition = weatherCondition.toLowerCase();
     
@@ -25,7 +24,13 @@ const WeatherBackground = ({ weatherCondition }) => {
 
   const backgroundType = getBackgroundType();
 
-  // Create animated particles based on weather
+  // Notify parent component of background type
+  useEffect(() => {
+    if (onBackgroundTypeChange) {
+      onBackgroundTypeChange(backgroundType);
+    }
+  }, [backgroundType, onBackgroundTypeChange]);
+
   const renderParticles = () => {
     if (backgroundType === 'rainy') {
       return Array.from({ length: 100 }).map((_, i) => (

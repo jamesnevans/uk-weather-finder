@@ -9,6 +9,7 @@ function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isDarkBackground, setIsDarkBackground] = useState(false);
 
   const handleSearch = async (searchData) => {
     setIsLoading(true);
@@ -19,10 +20,8 @@ function App() {
       let data;
       
       if (searchData.type === 'coordinates') {
-        // Use coordinates for suggestion selections
         data = await getWeatherByCoordinates(searchData.lat, searchData.lon);
       } else {
-        // Use city name for manual typing
         data = await getWeatherByCity(searchData.city, searchData.country);
       }
       
@@ -34,12 +33,18 @@ function App() {
     }
   };
 
+  const handleBackgroundTypeChange = (backgroundType) => {
+    // Dark backgrounds that need light text
+    const darkBackgrounds = ['rainy', 'stormy', 'cloudy', 'misty', 'snowy'];
+    setIsDarkBackground(darkBackgrounds.includes(backgroundType));
+  };
+
   return (
     <div className="App">
-      <div className="container">
+      <div className={`container ${isDarkBackground ? 'dark-background' : ''}`}>
         <SearchBar onSearch={handleSearch} isLoading={isLoading} />
         <ErrorMessage message={error} />
-        <WeatherDisplay weatherData={weatherData} />
+        <WeatherDisplay weatherData={weatherData} onBackgroundTypeChange={handleBackgroundTypeChange} />
       </div>
     </div>
   );
